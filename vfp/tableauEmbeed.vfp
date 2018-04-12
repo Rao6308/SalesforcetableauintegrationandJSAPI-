@@ -1,0 +1,15 @@
+<apex:page showHeader="true" sidebar="false">
+<apex:stylesheet value="/sCSS/25.0/sprites/1342034628000/Theme3/default/gc/versioning.css" />
+<apex:stylesheet value="/sCSS/25.0/sprites/1342034628000/Theme3/default/gc/extended.css" />
+<apex:includeScript value="/soap/ajax/11.1/connection.js"/>
+
+    <apex:tabPanel id="theTabPanel" switchType="ajax" selectedTab="tTab1"  styleClass="theTabPanel" tabClass="theTabPanel" contentClass="tabContent" activeTabClass="activeTab" inactiveTabClass="inactiveTab">          
+        <apex:tab label="Team Overview" name="People Card" id="pcard" status="sLoading">
+            <apex:iframe src="" height="900px"/>
+        </apex:tab>         
+        
+        <apex:tab label="Account Overview" name="Account card" id="acard" status="sLoading">  
+        <apex:iframe src="" height="900px"/>
+        </apex:tab>  
+    </apex:tabPanel>﻿
+</apex:page>
