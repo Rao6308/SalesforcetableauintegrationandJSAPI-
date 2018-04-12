@@ -1,15 +1,102 @@
-<apex:page showHeader="true" sidebar="false">
-<apex:stylesheet value="/sCSS/25.0/sprites/1342034628000/Theme3/default/gc/versioning.css" />
-<apex:stylesheet value="/sCSS/25.0/sprites/1342034628000/Theme3/default/gc/extended.css" />
-<apex:includeScript value="/soap/ajax/11.1/connection.js"/>
+<apex:page showHeader="true" sidebar="false" cache="true">
+<html>
+<head>
+<style>
+body {font-family: Arial;}
 
-    <apex:tabPanel id="theTabPanel" switchType="ajax" selectedTab="tTab1"  styleClass="theTabPanel" tabClass="theTabPanel" contentClass="tabContent" activeTabClass="activeTab" inactiveTabClass="inactiveTab">          
-        <apex:tab label="Team Overview" name="People Card" id="pcard" status="sLoading">
-            <apex:iframe src="" height="900px"/>
-        </apex:tab>         
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+</style>
+</head>
+<body>
+
+
+<div class="tab">
+  <button class="tablinks" onclick="renderviz('Team Overview')">Team Overview</button>
+  <button class="tablinks" onclick="renderviz('Account Overview')">Account Overview</button>
+</div>
+
+<div id="Account Overview" class="tabcontent">
+</div>
+
+<div id="Team Overview" class="tabcontent">
+</div>
+
+
+<script type="text/javascript" 
+        src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
+<script>
+window.onload = function(){
+renderviz('Team Overview');
+}
+function renderviz(tabname) {
+var viz,url,url_val,tab_content;
+tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    
+document.getElementById(tabname).style.display = "block";
+
+    if(tabname == "Team Overview"){        
+        url_val= '#defineyourURLHERE';
         
-        <apex:tab label="Account Overview" name="Account card" id="acard" status="sLoading">  
-        <apex:iframe src="" height="900px"/>
-        </apex:tab>  
-    </apex:tabPanel>﻿
+    }
+    if(tabname == "Account Overview"){
+        url_val= '#defineyourURLHERE';
+    }
+         var containerDiv = document.getElementById(tabname),
+                    url = url_val,
+                    options = {
+                        hideTabs: true,
+                        height: '1200px',
+                        width: '100%',
+                        hideToolbar: true,
+                        onFirstInteractive: function () {
+                            console.log("Run this code when the viz has finished loading.");
+                        }
+                    };
+                
+     viz = new tableau.Viz(containerDiv, url, options); 
+     
+}
+</script>
+     
+</body>
+</html> 
+
 </apex:page>
